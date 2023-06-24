@@ -1,11 +1,19 @@
 package com.cibertec.dawiCL3grupo6.model.bd;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,18 +30,31 @@ import lombok.Setter;
 @Table(name="usuario")
 public class Usuario {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer codigo;
-	@Column(name="nombre")
-	private String nombre;
-	@Column(name="apellido")
-	private String apellido;
-	@Column(name="email")
+	private Integer idusuario;
+	
+	@Column(name = "nomusuario")
+	private String nomusuario;
+	
+	@Column(name = "email")
 	private String email;
-	@Column(name="usuario")
-	private String usuario;
-	@Column(name="contrasena")
-	private String contrasena;
+	
+	@Column(name = "password")
+	private String password;
+	
+	@Column(name = "nombres")
+	private String nombres;
+	
+	@Column(name = "apellidos")
+	private String apellidos;
+
+	@Column(name = "activo")
+	private Boolean activo;
+	
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idrol"))
+	private Set<Rol> roles;
 
 }
