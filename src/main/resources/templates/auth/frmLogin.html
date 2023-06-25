@@ -24,18 +24,18 @@ body {
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="form-container">
-		<h2 class="p-4 text-center">AUTENTICACIÓN</h2>
+	<div class="form-container  fs-4">
+		<h1 class="p-5 text-center">AUTENTICACIÓN</h1>
 		<form method="post" th:action="@{/auth/login}">
 			<div class="form-group d-flex">
 				<label for="txtusuario" class="w-100 fw-bold d-flex">USUARIO</label>
-				<input type="text" id="txtusuario" name="txtusuario" class="w-100">
+				<input type="text" id="txtusuario" name="txtusuario" class="w-100" required>
 			</div>
 			<br>
 			<div class="form-group d-flex">
 				<label for="txtcontra" class="w-100 fw-bold d-flex">CONTRASEÑA</label>
 				<input type="password" id="txtpassword" name="txtpassword"
-					class="w-100">
+					class="w-100" required>
 			</div>
 			<br>
 			<div th:if="${param.error}" class="alert alert-success text-center"
